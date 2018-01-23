@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # vi /var/lib/pgsql/10/data/pg_hba.conf
 
 echo 'local all all trust' >> /var/lib/pgsql/10/data/pg_hba.conf
