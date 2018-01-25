@@ -11,6 +11,6 @@ systemctl restart postgresql-10.service
 su - postgres
 createdb atar;
 psql
-CREATE ROLE "atar" WITH PASSWORD 'atar1q2w3e4r';
+CREATE ROLE "atar" WITH PASSWORD 'atarpass';
 GRANT ALL PRIVILEGES ON DATABASE atar TO atar;
 ALTER ROLE atar WITH LOGIN;
