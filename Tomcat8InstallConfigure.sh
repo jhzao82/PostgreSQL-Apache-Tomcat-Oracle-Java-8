@@ -24,3 +24,55 @@ chmod -R g+r conf
 chown -R tomcat webapps/ work/ temp/ logs/
 
 # Install systemd Unit File
+echo "
+[Unit]
+Description=Apache Tomcat Web Application Container
+After=network.target
+
+[Service]
+Type=forking
+
+Environment=JAVA_HOME=/opt/jdk1.8.0_151/jre
+Environment=CATALINA_PID=/opt/tomcat/temp/tomcat.pid
+Environment=CATALINA_HOME=/opt/tomcat
+Environment=CATALINA_BASE=/opt/tomcat
+Environment='CATALINA_OPTS=-Xms1024M -Xmx3096M -server -XX:+UseParallelGC'
+Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom -Dspring.profiles.active=production -Datar.dsn=jdbc/atar -Djdk.tls.ephemeralDHKeySize=2048'
+
+ExecStart=/opt/tomcat/bin/startup.sh
+ExecStop=/opt/tomcat/bin/shutdown.sh
+
+User=tomcat
+Group=tomcat
+UMask=0007
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+" > /etc/systemd/system/tomcat.service
+
+# Start the Apache Tomcat service and set it run on system boot
+systemctl daemon-reload
+systemctl enable tomcat
+systemctl start tomcat
+
+# Modify firewall rules for testing Apache on web browser
+firewall-cmd --zone=public --permanent --add-port=8080/tcp
+firewall-cmd --reload
+
+# Edit Tomcat Configure file
+vi /opt/tomcat/conf/context.xml
+# Add the lines below, in <context> scope.
+
+# <Resource
+#     name="jdbc/atar"
+#     auth="Container"
+#     type="javax.sql.DataSource"
+#     driverClassName="org.postgresql.Driver"
+#     url="jdbc:postgresql://127.0.0.1:5432/atar"
+#     username="atar"
+#     password="atar1q2w3e4r"
+#     maxActive="20"
+#     maxIdle="10"
+#   />
