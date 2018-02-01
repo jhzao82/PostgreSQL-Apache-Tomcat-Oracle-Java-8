@@ -11,7 +11,7 @@ useradd -M -s /bin/nologin -g tomcat -d /opt/tomcat tomcat
 # -d for creating new home directory
 
 # Download Tomcat archive
-http://ftp.itu.edu.tr/Mirror/Apache/tomcat/tomcat-8/v8.5.24/bin/apache-tomcat-8.5.24.tar.gz
+wget http://ftp.itu.edu.tr/Mirror/Apache/tomcat/tomcat-8/v8.0.49/bin/apache-tomcat-8.0.49.tar.gz
 
 # First create /opt/tomcat directory and install Tomcat to this directory
 mkdir /opt/tomcat
@@ -32,7 +32,7 @@ After=network.target
 [Service]
 Type=forking
 
-Environment=JAVA_HOME=/opt/jdk1.8.0_151/jre
+Environment=JAVA_HOME=/opt/jdk1.8.0_161/jre
 Environment=CATALINA_PID=/opt/tomcat/temp/tomcat.pid
 Environment=CATALINA_HOME=/opt/tomcat
 Environment=CATALINA_BASE=/opt/tomcat
@@ -72,7 +72,7 @@ vi /opt/tomcat/conf/context.xml
 #     driverClassName="org.postgresql.Driver"
 #     url="jdbc:postgresql://127.0.0.1:5432/atar"
 #     username="atar"
-#     password="atar1q2w3e4r"
+#     password="atarpass"
 #     maxActive="20"
 #     maxIdle="10"
 #   />
