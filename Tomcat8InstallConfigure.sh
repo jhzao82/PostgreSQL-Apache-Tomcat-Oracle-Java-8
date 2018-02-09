@@ -73,6 +73,6 @@ vi /opt/tomcat/conf/context.xml
 #     url="jdbc:postgresql://127.0.0.1:5432/atar"
 #     username="atar"
 #     password="atarpass"
-#     maxActive="20"
+#     maxTotal="20"
 #     maxIdle="10"
 #   />
