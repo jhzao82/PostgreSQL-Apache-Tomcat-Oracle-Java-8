@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install the repository RPM
-yum install https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-7-x86_64/pgdg-centos10-10-1.noarch.rpm
+yum install https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm
 
 # Install client, server and contributed binaries packages
 yum install postgresql10 postgresql10-server postgresql10-contrib
