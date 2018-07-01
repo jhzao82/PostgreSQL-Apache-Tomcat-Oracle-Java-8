@@ -11,7 +11,7 @@ useradd -M -s /bin/nologin -g tomcat -d /opt/tomcat tomcat
 # -d for creating new home directory
 
 # Download Tomcat archive
-wget http://ftp.itu.edu.tr/Mirror/Apache/tomcat/tomcat-8/v8.0.49/bin/apache-tomcat-8.0.49.tar.gz
+wget http://ftp.itu.edu.tr/Mirror/Apache/tomcat/tomcat-8/v8.0.52/bin/apache-tomcat-8.0.52.tar.gz
 
 # First create /opt/tomcat directory and install Tomcat to this directory
 mkdir /opt/tomcat
