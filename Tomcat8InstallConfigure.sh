@@ -11,11 +11,11 @@ useradd -M -s /bin/nologin -g tomcat -d /opt/tomcat tomcat
 # -d for creating new home directory
 
 # Download Tomcat archive
-wget http://ftp.itu.edu.tr/Mirror/Apache/tomcat/tomcat-8/v8.0.52/bin/apache-tomcat-8.0.52.tar.gz
+wget http://ftp.itu.edu.tr/Mirror/Apache/tomcat/tomcat-9/v9.0.12/bin/apache-tomcat-9.0.12.tar.gz
 
 # First create /opt/tomcat directory and install Tomcat to this directory
 mkdir /opt/tomcat
-tar xvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1
+tar xvf apache-tomcat-9*tar.gz -C /opt/tomcat --strip-components=1
 
 # Update permissions
 cd /opt/tomcat
@@ -32,11 +32,11 @@ After=network.target
 [Service]
 Type=forking
 
-Environment=JAVA_HOME=/opt/jdk1.8.0_171/jre
+Environment=JAVA_HOME=/opt/jdk1.8.0_181/jre
 Environment=CATALINA_PID=/opt/tomcat/temp/tomcat.pid
 Environment=CATALINA_HOME=/opt/tomcat
 Environment=CATALINA_BASE=/opt/tomcat
-Environment='CATALINA_OPTS=-Xms1024M -Xmx3096M -server -XX:+UseParallelGC'
+Environment='CATALINA_OPTS=-Xms512M -Xmx512M -server -XX:+UseParallelGC'
 Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom -Dspring.profiles.active=production -Datar.dsn=jdbc/atar -Djdk.tls.ephemeralDHKeySize=2048'
 
 ExecStart=/opt/tomcat/bin/startup.sh
